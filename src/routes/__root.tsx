@@ -1,18 +1,15 @@
-import { createRootRoute, Link, Outlet } from "@tanstack/react-router";
+import { createRootRoute, Outlet } from "@tanstack/react-router";
+import LeftSidebar from "../components/LeftSidebar";
 
 export const Route = createRootRoute({
-  component: () => (
-    <>
-      <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>{" "}
-        <Link to="/about" className="[&.active]:font-bold">
-          About
-        </Link>
+  component: function RootRoute() {
+    return (
+      <div style={{ display: "flex", height: "100vh" }}>
+        <LeftSidebar />
+        <div style={{ flex: 1, padding: "1rem" }}>
+          <Outlet />
+        </div>
       </div>
-      <hr />
-      <Outlet />
-    </>
-  ),
+    );
+  },
 });
