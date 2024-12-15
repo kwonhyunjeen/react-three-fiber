@@ -4,9 +4,9 @@ import LeftSidebar from "../components/LeftSidebar";
 export const Route = createRootRoute({
   component: function RootRoute() {
     return (
-      <div style={{ display: "flex", height: "100vh" }}>
+      <div className="flex h-screen">
         <LeftSidebar />
-        <div style={{ flex: 1, padding: "1rem" }}>
+        <div className="flex-1">
           <Outlet />
         </div>
       </div>
