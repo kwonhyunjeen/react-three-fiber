@@ -28,7 +28,7 @@ function Installation() {
       <div>
         <h2 className="text-xl font-semibold mt-4 mb-2">1. 프로젝트 생성</h2>
         <pre className="bg-gray-800 text-white p-4 rounded">
-          <code>pnpm create vite react-three-fiber --template react-ts</code>
+          <code>pnpm create vite r3f-basic --template react-ts</code>
         </pre>
       </div>
       <div>

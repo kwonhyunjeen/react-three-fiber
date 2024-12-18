@@ -11,25 +11,10 @@
 // Import Routes
 
 import { Route as rootRoute } from "./routes/__root";
-import { Route as ExamplesScene2Import } from "./routes/examples/scene2";
-import { Route as ExamplesScene1Import } from "./routes/examples/scene1";
 import { Route as DocsOverviewImport } from "./routes/docs/overview";
 import { Route as DocsInstallationImport } from "./routes/docs/installation";
-import { Route as DocsCreatingASceneImport } from "./routes/docs/creating-a-scene";
 
 // Create/Update Routes
-
-const ExamplesScene2Route = ExamplesScene2Import.update({
-  id: "/examples/scene2",
-  path: "/examples/scene2",
-  getParentRoute: () => rootRoute,
-} as any);
-
-const ExamplesScene1Route = ExamplesScene1Import.update({
-  id: "/examples/scene1",
-  path: "/examples/scene1",
-  getParentRoute: () => rootRoute,
-} as any);
 
 const DocsOverviewRoute = DocsOverviewImport.update({
   id: "/docs/overview",
@@ -43,23 +28,10 @@ const DocsInstallationRoute = DocsInstallationImport.update({
   getParentRoute: () => rootRoute,
 } as any);
 
-const DocsCreatingASceneRoute = DocsCreatingASceneImport.update({
-  id: "/docs/creating-a-scene",
-  path: "/docs/creating-a-scene",
-  getParentRoute: () => rootRoute,
-} as any);
-
 // Populate the FileRoutesByPath interface
 
 declare module "@tanstack/react-router" {
   interface FileRoutesByPath {
-    "/docs/creating-a-scene": {
-      id: "/docs/creating-a-scene";
-      path: "/docs/creating-a-scene";
-      fullPath: "/docs/creating-a-scene";
-      preLoaderRoute: typeof DocsCreatingASceneImport;
-      parentRoute: typeof rootRoute;
-    };
     "/docs/installation": {
       id: "/docs/installation";
       path: "/docs/installation";
@@ -74,89 +46,44 @@ declare module "@tanstack/react-router" {
       preLoaderRoute: typeof DocsOverviewImport;
       parentRoute: typeof rootRoute;
     };
-    "/examples/scene1": {
-      id: "/examples/scene1";
-      path: "/examples/scene1";
-      fullPath: "/examples/scene1";
-      preLoaderRoute: typeof ExamplesScene1Import;
-      parentRoute: typeof rootRoute;
-    };
-    "/examples/scene2": {
-      id: "/examples/scene2";
-      path: "/examples/scene2";
-      fullPath: "/examples/scene2";
-      preLoaderRoute: typeof ExamplesScene2Import;
-      parentRoute: typeof rootRoute;
-    };
   }
 }
 
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  "/docs/creating-a-scene": typeof DocsCreatingASceneRoute;
   "/docs/installation": typeof DocsInstallationRoute;
   "/docs/overview": typeof DocsOverviewRoute;
-  "/examples/scene1": typeof ExamplesScene1Route;
-  "/examples/scene2": typeof ExamplesScene2Route;
 }
 
 export interface FileRoutesByTo {
-  "/docs/creating-a-scene": typeof DocsCreatingASceneRoute;
   "/docs/installation": typeof DocsInstallationRoute;
   "/docs/overview": typeof DocsOverviewRoute;
-  "/examples/scene1": typeof ExamplesScene1Route;
-  "/examples/scene2": typeof ExamplesScene2Route;
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute;
-  "/docs/creating-a-scene": typeof DocsCreatingASceneRoute;
   "/docs/installation": typeof DocsInstallationRoute;
   "/docs/overview": typeof DocsOverviewRoute;
-  "/examples/scene1": typeof ExamplesScene1Route;
-  "/examples/scene2": typeof ExamplesScene2Route;
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath;
-  fullPaths:
-    | "/docs/creating-a-scene"
-    | "/docs/installation"
-    | "/docs/overview"
-    | "/examples/scene1"
-    | "/examples/scene2";
+  fullPaths: "/docs/installation" | "/docs/overview";
   fileRoutesByTo: FileRoutesByTo;
-  to:
-    | "/docs/creating-a-scene"
-    | "/docs/installation"
-    | "/docs/overview"
-    | "/examples/scene1"
-    | "/examples/scene2";
-  id:
-    | "__root__"
-    | "/docs/creating-a-scene"
-    | "/docs/installation"
-    | "/docs/overview"
-    | "/examples/scene1"
-    | "/examples/scene2";
+  to: "/docs/installation" | "/docs/overview";
+  id: "__root__" | "/docs/installation" | "/docs/overview";
   fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  DocsCreatingASceneRoute: typeof DocsCreatingASceneRoute;
   DocsInstallationRoute: typeof DocsInstallationRoute;
   DocsOverviewRoute: typeof DocsOverviewRoute;
-  ExamplesScene1Route: typeof ExamplesScene1Route;
-  ExamplesScene2Route: typeof ExamplesScene2Route;
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  DocsCreatingASceneRoute: DocsCreatingASceneRoute,
   DocsInstallationRoute: DocsInstallationRoute,
   DocsOverviewRoute: DocsOverviewRoute,
-  ExamplesScene1Route: ExamplesScene1Route,
-  ExamplesScene2Route: ExamplesScene2Route,
 };
 
 export const routeTree = rootRoute
@@ -169,27 +96,15 @@ export const routeTree = rootRoute
     "__root__": {
       "filePath": "__root.tsx",
       "children": [
-        "/docs/creating-a-scene",
         "/docs/installation",
-        "/docs/overview",
-        "/examples/scene1",
-        "/examples/scene2"
+        "/docs/overview"
       ]
-    },
-    "/docs/creating-a-scene": {
-      "filePath": "docs/creating-a-scene.tsx"
     },
     "/docs/installation": {
       "filePath": "docs/installation.tsx"
     },
     "/docs/overview": {
       "filePath": "docs/overview.tsx"
-    },
-    "/examples/scene1": {
-      "filePath": "examples/scene1.tsx"
-    },
-    "/examples/scene2": {
-      "filePath": "examples/scene2.tsx"
     }
   }
 }
